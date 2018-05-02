@@ -31,13 +31,15 @@ void valor (Teste* t) {
 	cout 
 	<< "Dentro da função valor:" << endl
 	<< t->valor << endl;
+	delete t;
 }
 
 void referencia (Teste** t) {
-	/* memory leak aqui - não tem gc em c++, e não existe 
+	/* AVISO: Perigo de memory leak - não tem gc em c++, e não existe 
 	   mais referência para o objeto original */
-	/* memory leak here - there is no gc in c++, and the reference 
+	/* WARNING: memory leak danger here - there is no gc in c++, and the reference 
 	   for the original object is no more */
+	delete (*t);
 	(*t) = new Teste();
 	(*t)-> valor = "alterado";
 	cout 
